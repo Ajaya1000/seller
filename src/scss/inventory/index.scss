@@ -1,0 +1,59 @@
+.inventory-container {
+    // background: rgba(#000, 0.1);
+    // height: 100%;
+
+    .heading {
+        margin: 20px;
+
+        h2 {
+            font-size: 23px;
+            color: rgba(#000, 0.7);
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            color: rgba(#000, 0.5);
+            font-weight: 300;
+        }
+    }
+
+    // .divider{
+
+    // }
+    .filter-menu {
+        margin-top: 20px;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .input-group {
+            width: 25%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            label {
+                color: rgba(#000, 0.7);
+                font-size: 17px;
+            }
+
+            input {
+                height: 30px;
+                margin-left: 10px;
+
+                :focus {
+                    border-color: #7467EF;
+                }
+            }
+        }
+    }
+
+    .product-menu {
+        background: rgba(#000, 0.1);
+    }
+}
