@@ -4,6 +4,7 @@ import {
   makeStyles,
   useTheme
 } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,113 +29,142 @@ import {
 import '../../scss/sidenav/index.scss'
 import { NavLink } from 'react-router-dom';
 var drawerWidth = 240;
-const useStyles = makeStyles((theme) => ({
-  list:{
-    color:'#fff',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  navItem:{
-    backgroundColor: 'transparent',
-    textDecoration:'none',
-    color:'#fff',
-    '&:hover':{
-      backgroundColor: '#00000022'
-    }
-  },
+const useStyles = makeStyles((theme) => {
+  console.log('props is');
+  return ({
+    list: {
+      color: '#fff',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    navItem: {
+      backgroundColor: 'transparent',
+      textDecoration: 'none',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#00000022'
+      }
+    },
     listItem: {
       backgroundColor: 'inherit',
       textDecoration: 'none',
       color: 'inherit',
       width: '95%',
       borderRadius: theme.spacing(2),
-      marginTop:theme.spacing(2),
+      marginTop: theme.spacing(2),
     },
-  selected: {
-    backgroundColor: '#FF9E43',
-    '&:hover': {
-      backgroundColor: '#FF9E43'
-    }
-  },
-  email:{
-    fontSize:13,
-    marginTop:theme.spacing(1)
-  },
-  divider: {
-    background: '#ffffff55',
-    width:'80%'
-  },
-  userinfo:{
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent:'center',
-    alignItems:'center',
-    color:'#fff',
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2)
-  },
-  logo:{
-    color:'#fff',
-    marginLeft: theme.spacing(4),
-    marginTop:theme.spacing(1),
-    marginBottom: theme.spacing(4),
-    fontWeight:800
-  },
-   purple: {
-     color: theme.palette.getContrastText(deepPurple[500]),
-     backgroundColor: deepPurple[500],
-   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    backgroundColor: '#232A44'
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    backgroundColor: '#232A44',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    backgroundColor: '#232A44',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
+    selected: {
+      backgroundColor: '#FF9E43',
+      '&:hover': {
+        backgroundColor: '#FF9E43'
+      }
     },
-  },
-}));
+    email: {
+      fontSize: 13,
+      marginTop: theme.spacing(1)
+    },
+    divider: {
+      background: '#ffffff55',
+      width: '80%'
+    },
+    userinfo: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(2)
+    },
+    logo: {
+      color: '#fff',
+      marginLeft: theme.spacing(4),
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(4),
+      fontWeight: 800
+    },
+    purple: {
+      color: theme.palette.getContrastText(deepPurple[500]),
+      backgroundColor: deepPurple[500],
+    },
+    drawer: {
+      width: props => (props.isMobile ? '100%' : drawerWidth),
+      height:'100%',
+      flexShrink: 0,
+      whiteSpace: 'nowrap',
+      backgroundColor: '#00000055'
+    },
+    // drawerMobile: {
+    //   width: '100vw',
+    //   flexShrink: 0,
+    //   whiteSpace: 'nowrap',
+    //   backgroundColor: '#00000055'
+    // },
+    drawerOpen: {
+      width:props=>{console.log('props is' + props); return (props.isMobile?'100%':drawerWidth)},
+      height: '100%',
+      backgroundColor: '#00000055',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerClose: {
+      backgroundColor: '#232A44',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9) + 1,
+      },
+    },
+  });
+});
 export default function SideNav(props) {
-  const classes = useStyles();
+  console.log(props);
   const theme = useTheme();
   const open = props.open;
-  const toggleDrawer = props.toggleDrawer;
-
+  const togleDrawer = props.togleDrawer;
+  const isMobile = props.isMobile;
+  const classes = useStyles(isMobile);
+  const variant = (!isMobile) ? 'permanent' : 'temporary';
+  console.log('variant is'+ variant);
+  if(open || !isMobile){
     return (
-      <>
+      < >
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
+      
+      <SwipeableDrawer 
+        variant={variant}
+        open={open}
+        onOpen = {
+          () => {
+            console.log(togleDrawer);
+            togleDrawer(true)
+          }
+        }
+        onClose = {
+          () => {
+            console.log(togleDrawer);
+            togleDrawer(false)
+          }
+        }
       >
-          <div className={classes.logo}>
+        < div style = {
+          {
+             backgroundColor: '#232A44',
+            width: drawerWidth,
+            height:'100%'
+          }
+        } >
+                    <div className={classes.logo}>
             <Typography variant="h6" >Tvish.com</Typography>
+            {/* <IconButton>
+              <
+            </IconButton> */}
           </div>
           <div className={classes.userinfo}>
             <Avatar className={classes.purple}>A</Avatar>
@@ -150,7 +180,6 @@ export default function SideNav(props) {
               <ListItem className = {
               classes.listItem
             } >
-                
                     < ListItemIcon style = {
                     {
                       minWidth:'40px'
@@ -237,7 +266,13 @@ export default function SideNav(props) {
               </ListItem>
               </NavLink>
           </List>
-        </Drawer>
+        </div>
+        </SwipeableDrawer>
       </>
     )
+  }
+  else{
+    return null;
+  }
+    
 }

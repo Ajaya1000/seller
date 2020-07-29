@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import {Link, Breadcrumbs,TextField,Divider} from '@material-ui/core'
+import {Link, Breadcrumbs,TextField,Divider, Button, Fab} from '@material-ui/core'
 import {Link as RouterLink} from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home';
+import AddIcon from '@material-ui/icons/Add';
 import {
   makeStyles
 } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import MenuItem from '@material-ui/core/MenuItem';
-import '../../scss/inventory/index.scss'
+import '../../scss/inventory/index.scss';
+import ProductList from './productlist'
 const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -46,6 +48,9 @@ export default function Inventory(props) {
 
     return (
       <div className='inventory-container'>
+        <Fab className='fab' color="primary" aria-label="add">
+            <AddIcon />
+        </Fab>
         <Breadcrumbs style={{marginTop:'12px'}}>
             <LinkRouter className={classes.link} to='/dashboard'> <HomeIcon className={classes.icon} /> Home</LinkRouter>
             <Typography color="textPrimary" className={classes.link}>
@@ -58,19 +63,20 @@ export default function Inventory(props) {
         </div>
         {/* <hr className='divider' /> */}
         <Divider />
-        <div>
+        
             < form className = 'filter-menu' >
               <div className='input-group'>
-                <label htmlFor='id'>Id:</label>
-                <input type='text' />
+                <label htmlFor='id'>Id : &nbsp;&nbsp;&nbsp;</label>
+                <TextField size='small' variant='outlined' />
               </div>
               <div className='input-group'>
-                <label htmlFor='id'>Product :</label>
-                <input type='text' />
+                <label htmlFor='id'>Product :&nbsp;</label>
+                < TextField size = 'small'
+                variant = 'outlined' / >
               </div>
               <div className='input-group'>
-                <label htmlFor='id'>Category :</label>
-                <TextField
+                <label htmlFor='id'>Category :&nbsp;&nbsp;&nbsp;</label>
+                < TextField 
                   id="outlined-select-currency"
                   select
                   value={currency}
@@ -86,12 +92,14 @@ export default function Inventory(props) {
                 </TextField>
               </div>
               <div className='input-group'>
-                 < input type = 'submit' / >
+                 < Button
+                 variant = "contained"
+                 color = "primary" > Apply </Button>
               </div>
             </form>
-        </div>
+        <Divider />
         <div className='product-menu'>
-
+          <ProductList />
         </div>
       </div>
     )

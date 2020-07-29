@@ -79,11 +79,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const isMobile=props.isMobile;
+  const togleDrawer = props.togleDrawer;
+  const open= props.open;
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -203,6 +205,15 @@ export default function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div> */}
+          {
+            isMobile ? < IconButton onClick = {
+              () => {
+                console.log('clicked')
+                togleDrawer(!open)
+                }
+            } >
+            <MenuIcon  />
+          </IconButton>:''}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
