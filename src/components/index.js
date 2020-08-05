@@ -12,7 +12,6 @@ import {
 import { useMediaQuery } from '@material-ui/core'
 var drawerWidth = 240;
 var appBarWidth = 50;
-
 export default function Home (props) {
 
     const theme = useTheme();

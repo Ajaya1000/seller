@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, Breadcrumbs,TextField,Divider, Button, Fab} from '@material-ui/core'
+import {Link, Breadcrumbs,TextField,Divider, Button, Fab, Grid} from '@material-ui/core'
 import {Link as RouterLink} from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
@@ -65,37 +65,53 @@ export default function Inventory(props) {
         <Divider />
         
             < form className = 'filter-menu' >
-              <div className='input-group'>
-                <label htmlFor='id'>Id : &nbsp;&nbsp;&nbsp;</label>
+              < Grid container justify = "center"
+              alignItems = "center"
+              direction="row" 
+              spacing = {
+                2
+              } >
+                <Grid xs={12} sm={3} item>
+                  <div className='input-group'>
+                <label htmlFor='id'>Id : </label>
                 <TextField size='small' variant='outlined' />
               </div>
-              <div className='input-group'>
-                <label htmlFor='id'>Product :&nbsp;</label>
+                </Grid>
+              <Grid xs={12} sm={3} item >
+                <div className='input-group'>
+                <label htmlFor='id'>Product :</label>
                 < TextField size = 'small'
                 variant = 'outlined' / >
               </div>
-              <div className='input-group'>
-                <label htmlFor='id'>Category :&nbsp;&nbsp;&nbsp;</label>
-                < TextField 
-                  id="outlined-select-currency"
-                  select
-                  value={currency}
-                  onChange={handleChange}
-                  helperText="Please select your currency"
-                  variant="outlined"
-                >
-                  {currencies.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+              </Grid>
+              <Grid xs={12} sm={3} item>
+                  <div className='input-group'>
+                  <label htmlFor='id'>Category :</label>
+                  < TextField 
+                    id="outlined-select-currency"
+                    select
+                    value={currency}
+                    onChange={handleChange}
+                    helperText="Please select your currency"
+                    variant="outlined"
+                  >
+                    {currencies.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
               </div>
-              <div className='input-group'>
+              </Grid>
+              <Grid xs={12} sm={3} item>
+                <div className='input-group'>
                  < Button
                  variant = "contained"
                  color = "primary" > Apply </Button>
               </div>
+              </Grid>
+              </Grid>
+              
             </form>
         <Divider />
         <div className='product-menu'>
