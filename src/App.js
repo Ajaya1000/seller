@@ -5,7 +5,7 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
-var store = createStore(reducers, applyMiddleware(thunk, logger));
+// var store = createStore(reducers, applyMiddleware(thunk, logger));
 function App() {
   return (<Routes/>);
 }
