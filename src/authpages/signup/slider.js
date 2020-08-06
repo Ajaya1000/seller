@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -70,6 +70,24 @@ const steps = ['Bussiness Info', 'Personal Info', 'Review your Infos'];
 export default function Slider() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
+  //states BInfo
+  const [companyName, setcompanyName] = useState('');
+  const [storeName, setstoreName] = useState('');
+  const [pCategory, setpCategory] = useState('');
+  const [gst, setgst] = useState('');
+  const [pan, setpan] = useState('');
+  
+  //States UserInfo
+  const [fullName, setfullName] = useState(''); //1
+  const [pNumber, setpNumber] = useState(''); //2
+  const [address1, setaddress1] = useState(''); //3
+  const [address2, setaddress2] = useState(''); //4
+  const [city, setcity] = useState(''); //5
+  const [zip, setzip] = useState(''); //6
+  const [country, setcountry] = useState(''); //7
+  const [state, setstate] = useState(''); //8
+
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

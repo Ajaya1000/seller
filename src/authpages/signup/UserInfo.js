@@ -12,7 +12,7 @@ export default function UserInfo() {
         Personal Information
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="fullName"
@@ -20,6 +20,16 @@ export default function UserInfo() {
             label="Full name"
             fullWidth
             autoComplete="given-name"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="pNumber"
+            name = "pNumber"
+            label="Phone Number"
+            fullWidth
+            autoComplete="ph-Number/ Phone-Number"
           />
         </Grid>
         <Grid item xs={12}>
