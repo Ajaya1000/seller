@@ -9,40 +9,41 @@ export default function BInfo() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Bussiness Information
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" />
+          <TextField required id="companyName" label="Company / Bussiness Name" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
+            id="storeName"
+            label="Store Name"
+            fullWidth           
           />
         </Grid>
+        <Grid item xs={12} >
+          <TextField required id="pCategory" label="Product Category" fullWidth />
+        </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth autoComplete="cc-exp" />
+          <TextField required id="gst" label="GST Number" fullWidth autoComplete="gst" />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
+            id="pan"
+            label="PAN ID"
             fullWidth
-            autoComplete="cc-csc"
+            autoComplete="pan"
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );
