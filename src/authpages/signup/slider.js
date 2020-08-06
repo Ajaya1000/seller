@@ -66,18 +66,6 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Bussiness Info', 'Personal Info', 'Review your Infos'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <BInfo />;
-    case 1:
-      return <UserInfo />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 export default function Slider() {
   const classes = useStyles();
@@ -90,6 +78,19 @@ export default function Slider() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const getStepContent=(step)=>{
+    switch (step) {
+      case 0:
+        return <BInfo />;
+      case 1:
+        return <UserInfo /> ;
+      case 2:
+        return <Review /> ;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
 
   return (
     <React.Fragment>
